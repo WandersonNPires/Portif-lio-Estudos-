@@ -1,0 +1,79 @@
+<meta charset =<"UFT-8">
+
+<input/>
+
+<button> Compare com meu Segredo</button>
+
+<script>
+// sorteia numeros aleatorios 
+function sorteitaAleatorio(){
+	return Math.round(Math.random() *10);
+}
+// função para sortear 4 numeros e preencher a posição
+function sorteiaNumeros(quantidade){
+	var numeroSorteado = [];
+	var numero = 1;
+	while (numero <= quantidade){
+		
+		var numeroAleatorio = sorteitaAleatorio();
+		var achou = false;
+		  
+		if(numeroAleatorio!== 0){
+			 // varrendo as posições, se caso achar um numero existente o for para, caso não encontrar ele chama mais um numero para entrar na posição de uma das 4 no Array
+			for(var i =0; i < numeroSorteado.length; i++){
+				if(numeroSorteado[i]== numeroAleatorio){
+					achou = true;
+					break;
+				}
+	
+			}   // caso não encontre um numero na posição, acrescenta a primeira posição e busca mais numeros para preencher as 3 faltantes.
+			if(achou == false){
+				numeroSorteado.push(numeroAleatorio);
+				numero++;
+			}
+		}	 
+	}
+	return numeroSorteado;
+}
+
+var segredos = sorteiaNumeros(4);
+var maximoTentaiva = 3;
+var tentativaAtual =1;
+
+var button = document.querySelector("button");
+
+button.onclick = verifica;
+
+console.log(segredos);
+
+var input = document.querySelector("input");
+input.focus();
+var acertou = false;
+
+function verifica() {
+	if(tentativaAtual <=maximoTentaiva && !acertou){
+	
+		if(segredos.includes(parseInt(input.value))){ 
+			alert("Você ACERTOU! os numeros sorteados foram " + segredos );
+			acertou=true;
+		}
+		else{
+			alert("Você Errou!");
+			acertou=false;
+		}
+		
+	    input.value = "";
+	    input.focus();
+	   
+	    tentativaAtual++;
+	}
+	else{
+		
+		if(acertou)
+			alert("Voce já ganhou");
+		else
+			alert("Voce gastou todas as tentivas, os numeros poderiam ser "+ segredos);
+	}
+} 
+
+</script>
