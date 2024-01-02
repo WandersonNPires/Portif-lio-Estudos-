@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+
+<script>
+function pulaLinha(){
+	document.write("<br>");
+	}
+ 
+ function mostra(frase){
+ 
+	 document.write(frase);
+	 pulaLinha();
+ }
+	var quantidadeAluno =  parseInt(prompt("informe a quantidade de alunos da sala"));
+	
+	var quantidade =1;
+	var notas=0;
+	while(quantidade <= quantidadeAluno)
+	{
+	var valores = parseInt(prompt("Informe a nota do "+quantidade+"ºaluno"));
+		notas=notas+valores
+		quantidade++;
+	}
+	
+	var media = notas/quantidadeAluno
+
+	mostra("a media das notas dos alunos é "+media);
+	
+</script>
